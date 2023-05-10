@@ -3,14 +3,14 @@
     <div class="row">
       <div
         id="lf"
-        class="col-4 d-flex flex-column align-items-center justify-content-center"
+        class="col-md-6 col-lg-4 d-flex flex-column align-items-center justify-content-center"
         style="height: 80vh"
       >
         <img src="../assets/logo-grey.png" class="img-fluid" alt="" />
         <h6>wanna feel alive,come and chart with others</h6>
       </div>
       <div
-        class="col-8 d-flex flex-column align-items-center justify-content-center"
+        class="col-md-6 col-lg-8 d-flex flex-column align-items-center justify-content-center"
       >
         <div class="">
           <h1 class="text-bold">Welcome To Our Website</h1>
@@ -24,6 +24,7 @@
             type="text"
             name="username"
             placeholder="Enter your name"
+            v-model="username"
           />
         </div>
         <div class="sign-inputs">
@@ -35,6 +36,7 @@
             type="email"
             name="email"
             placeholder="example@gmail.com"
+            v-model="email"
           />
         </div>
         <div class="sign-inputs">
@@ -46,6 +48,7 @@
             type="password"
             name="password"
             placeholder="Enter Password"
+            v-model="password"
           />
         </div>
         <div class="sign-inputs">
@@ -59,10 +62,11 @@
             type="password"
             name="password_confirm"
             placeholder="Enter Password"
+            v-model="confirm_password"
           />
         </div>
         <div>
-          <button>Sign Up</button>
+          <button @click="signup">Sign Up</button>
         </div>
       </div>
     </div>
@@ -71,11 +75,47 @@
 
 
 <script>
+import axios from "axios";
 // @ is an alias to /src
 
 export default {
   name: "HomeView",
   components: {},
+  data() {
+    return {
+      username: "",
+      email: "",
+      password: "",
+      confirm_password: "",
+    };
+  },
+  methods: {
+    async signup() {
+      if (
+        !this.username ||
+        !this.email ||
+        !this.password ||
+        !this.confirm_password
+      ) {
+        alert("please fill in the required fields");
+        return;
+      }
+      if (this.password !== this.confirm_password) {
+        alert("password do not match");
+      } else {
+        let result = await axios.post("http://localhost:3000/users", {
+          username: this.username,
+          email: this.email,
+          password: this.password,
+          confirm_password: this.confirm_password,
+        });
+        if (result.status == 201) {
+          localStorage.setItem("user.info", JSON.stringify(result));
+          this.$router.push({ name: "login" });
+        }
+      }
+    },
+  },
 };
 </script>
 <style scoped>

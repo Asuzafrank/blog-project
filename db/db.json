@@ -1,0 +1,41 @@
+{
+  "users": [
+    {
+      "username": "frank",
+      "email": "frank@gmail.com",
+      "password": "frank123",
+      "confirm_password": "frank123",
+      "id": 1
+    }
+  ],
+  "blogs": [
+    {
+      "title": "boosting productivity",
+      "content": "Tips for Boosting Your Productivity While Working from Home\". This is a relevant topic for many people, especially in the current climate where more people are working from home due to the pandemic. The title is also specific and actionable, which can help attract readers who are looking for practical advice to improve their productivity.",
+      "date": "5/10/2023",
+      "user_id": 1,
+      "id": 1
+    },
+    {
+      "title": "boosting productivity",
+      "content": "Tips for Boosting Your Productivity While Working from Home\". This is a relevant topic for many people, especially in the current climate where more people are working from home due to the pandemic. The title is also specific and actionable, which can help attract readers who are looking for practical advice to improve their productivity.",
+      "date": "5/10/2023",
+      "user_id": 1,
+      "id": 1
+    },
+    {
+      "title": "boosting productivity",
+      "content": "Tips for Boosting Your Productivity While Working from Home\". This is a relevant topic for many people, especially in the current climate where more people are working from home due to the pandemic. The title is also specific and actionable, which can help attract readers who are looking for practical advice to improve their productivity.",
+      "date": "5/10/2023",
+      "user_id": 1,
+      "id": 1
+    },
+    {
+      "title": "boosting productivity",
+      "content": "Tips for Boosting Your Productivity While Working from Home\". This is a relevant topic for many people, especially in the current climate where more people are working from home due to the pandemic. The title is also specific and actionable, which can help attract readers who are looking for practical advice to improve their productivity.",
+      "date": "5/10/2023",
+      "user_id": 1,
+      "id": 1
+    }
+  ]
+}
