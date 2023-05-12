@@ -16,16 +16,21 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <router-link
+              to="/"
+              class="nav-link active"
+              aria-current="page"
+              href="#"
+              >Home</router-link
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+            <router-link to="/post" class="nav-link" href="#">Post</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
+            <router-link to="/login" class="nav-link" href="#"
+              >Logout</router-link
+            >
           </li>
         </ul>
       </div>

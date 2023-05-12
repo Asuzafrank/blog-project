@@ -71,7 +71,9 @@ export default {
         date: new Date().toLocaleDateString(),
         user_id: userId,
       });
-      console.log(result);
+      if (result.status == 201) {
+        this.$router.push({ name: "home" });
+      }
     },
   },
 };

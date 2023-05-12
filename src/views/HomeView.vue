@@ -15,7 +15,15 @@
               <p class="card-text">
                 {{ blog.content }}
               </p>
-              <h6 class="data-name">posted by:{{ name }}</h6>
+              <div class="d-flex justify-content-between">
+                <h6 class="data-name">posted by:{{ blog.user_name }}</h6>
+                <button
+                  @click="delpost(blog.id, blog.user_id)"
+                  class="borderless-button"
+                >
+                  delete
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -88,7 +96,7 @@ export default {
       blogs: [],
       name: "",
       currentPage: 1,
-      perPage: 3,
+      perPage: 2,
     };
   },
   computed: {
@@ -126,10 +134,38 @@ export default {
     changePage(page) {
       this.currentPage = page;
     },
+    async loadData() {
+      let user = localStorage.getItem("user.info");
+      this.name = JSON.parse(user).username;
+
+      let result = await axios.get("http://localhost:3000/blogs");
+      this.blogs = result.data;
+    },
+    async delpost(id, user_id) {
+      let user = localStorage.getItem("user.info");
+      let currentUser = JSON.parse(user).id;
+
+      if (currentUser !== user_id) {
+        alert("You are not authorized to delete this post!");
+        return;
+      }
+
+      let res = await axios.delete("http://localhost:3000/blogs/" + id);
+      console.log(res);
+      if (res.status == 200) {
+        alert("Deleted successfully");
+        this.loadData();
+      }
+    },
   },
   async mounted() {
-    this.getUserName();
+    let users = await axios.get("http://localhost:3000/users");
     let result = await axios.get("http://localhost:3000/blogs");
+    result.data.forEach((blog) => {
+      let user = users.data.find((user) => user.id === blog.user_id);
+      blog.user_name = user.username;
+    });
+
     this.blogs = result.data;
   },
 };
@@ -139,9 +175,17 @@ export default {
 .data-name {
   font-family: "Dancing Script", cursive;
   font-size: 20px;
+  color: steelblue;
 }
 
 .card-title {
   color: steelblue;
+}
+.borderless-button {
+  border: none;
+  background-color: transparent;
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
 }
 </style>

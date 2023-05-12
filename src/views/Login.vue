@@ -46,6 +46,7 @@
         </div>
       </div>
     </div>
+    <p>Dont have an account <router-link to="/sign-up">sign up</router-link></p>
   </div>
 </template>
 
