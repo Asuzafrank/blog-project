@@ -69,6 +69,7 @@
           <button @click="signup">Sign Up</button>
         </div>
       </div>
+      <p>Have an Account <router-link to="/login">login</router-link></p>
     </div>
   </div>
 </template>
